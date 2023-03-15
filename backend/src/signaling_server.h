@@ -3,7 +3,6 @@
 #include <websocketpp/config/asio_no_tls.hpp>
 #include <websocketpp/server.hpp>
 
-typedef int butts
 
 class signaling_server {
 public:
@@ -14,6 +13,10 @@ public:
   void start(uint16_t port);
   void stop();
   void set_message_handler(message_handler handler);
+
+  void handle_join_message(message_ptr msg);
+  void handle_leave_message(message_ptr msg);
+
 
 private:
   server server_;
