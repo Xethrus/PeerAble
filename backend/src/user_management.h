@@ -22,6 +22,7 @@ public:
     name_ = name;
   }
   const std::string& get_name() {
+    return name_;
   }
   websocketpp::connection_hdl get_handle() const;
 private:
@@ -41,5 +42,6 @@ public:
 
 private:
   std::unordered_map<std::string, User> users_;
+  std::unordered_map<websocketpp::connection_hdl, std::string> inverse_users_;
 };
 

@@ -1,8 +1,10 @@
 #include "user_management.h"
 #include <stdexcept>
+
 void UserManager::add_user(const std::string& name, websocketpp::connection_hdl handle) {
   if(!user_exists(name)) {
     users_.insert({name, User(name,handle)});
+    inverse_users_.insert({handle, name});
   } else {
     throw std::invalid_argument("user exists");
   }
@@ -10,6 +12,7 @@ void UserManager::add_user(const std::string& name, websocketpp::connection_hdl 
 
 void UserManager::remove_user(const std::string& name) {
   if(user_exists(name)) {
+    inverse_users_.erase(users_.at(name).connection_handle_);
     users_.erase(name);
   } else {
     throw std::invalid_argument("user does not exist");
@@ -17,7 +20,11 @@ void UserManager::remove_user(const std::string& name) {
 }
 
 bool UserManager::user_exists(const std::string& name) const {
-    return users_.count(name) > 0;
+    if(users_.count(name) > 0 && inverse_users_.count(name) >0) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 websocketpp::connection_hdl User::get_handle() const {
