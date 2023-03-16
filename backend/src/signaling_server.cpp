@@ -26,7 +26,7 @@ void SignalingServer::on_message(websocketpp::connection_hdl handle, server::mes
   //converting to string from client message
   std::string message_string = message->get_payload();
   //parsing
-  auto json_parsed = nlohmann::json::parse(message_string)
+  auto json_parsed = nlohmann::json::parse(message_string);
 
   
   //check message type and name
@@ -45,7 +45,7 @@ void SignalingServer::on_message(websocketpp::connection_hdl handle, server::mes
 
 void SignalingServer::on_close(websocketpp::connection_hdl handle) {
   //retrieve client name with handle
-  std::string client_name = userManager_.inverse_users_.at(handle);
+  std::string client_name = userManager_.get_user(handle);
 
   //clear client from users_ map
   userManager_.remove_user(client_name);
