@@ -14,8 +14,8 @@ public:
 
 private:
     
-    std::unordered_map<websocketpp::connection_hdl, std::string, std::owner_les<websocketpp::connection_hdl>> clients_;
-    UserManager& userManager_;
+//    std::unordered_map<websocketpp::connection_hdl, std::string, std::owner_les<websocketpp::connection_hdl>> clients_;
+    UserManager userManager_;
     websocketpp::server<websocketpp::config::asio> server_;
     
     //my connections set for storing client connections

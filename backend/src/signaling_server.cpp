@@ -28,12 +28,12 @@ void SignalingServer::on_message(websocketpp::connection_hdl handle, server::mes
   //parsing
   auto json_parsed = nlohmann::json::parse(message_string)
 
-
+  
   //check message type and name
   if(json_parsed["type"] == "join" && json_parsed.contains("name")) {
-    //store name and connection in clients_ map
+    //store name and connection in users_ map
     std::string client_name = json_parsed["name"];
-    clients_[handle] = client_name;
+    userManager_.add_user(client_name, handle);
 
     //send welcome to client
     nlohmann::json welcome_message;
@@ -47,8 +47,8 @@ void SignalingServer::on_close(websocketpp::connection_hdl handle) {
   //retrieve client name with handle
   std::string client_name = clients_[handle];
 
-  //clear client from clients_ map
-  clients_.erase(handle);
+  //clear client from users_ map
+  userManager_.remove_user(client_name);
   //remove handle fro connections_
   connections_.erase(handle);
 
