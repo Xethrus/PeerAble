@@ -1,73 +1,65 @@
 #include "signaling_server.h"
 #include "user_management.h"
-#include "message_format.h"
+#include <nlohman/json>
 
-#include <nlohmann/json.hpp>
-
-void SignalingServer::start(uint16_t port) {
+SignalingServer::SignalingServer(UserManager& userManager) : userManager_(userManager) {
   server_.init_asio();
-  server_.set_open_handler(std::bind(&SignalingServer::on_open, this, std::placeholders::_1));
-  server_.set_close_handler(std::bind(&SignalingServer::on_close, this, std::placeholders::_1));
-  server_.set_message_handler(std::bind(&SignalingServer::on_message, this, std::placeholders::_1, std::placeholders::_2));
 
+  server_.set_open_handler(bind(&SignalingServer::on_open, this, ::_1));
+  server_.set_close_handler(bind(&SignalingServer::on_close, this, ::_1));
+  server_.set_message_handler(bind(&SignalingServer::on_message, this, ::_1, ::_2));
+}
+
+void SignalingServer::run(uint16_t port) {
+    // Start the WebSocket server
   server_.listen(port);
   server_.start_accept();
-
   server_.run();
 }
 
-void SignalingServer::stop() {
-  server_.stop();
+void SignalingServer::on_open(websocketpp::connection_hdl handle) {
+  //store connection for later
+  connections_.insert(handle);
 }
 
-void SignalingServer::set_message_handler(message_handler handler) {
-  message_handler_ = handler;
-}
+void SignalingServer::on_message(websocketpp::connection_hdl handle, server::message_ptr message) {
+  //converting to string from client message
+  std::string message_string = message->get_payload();
+  //parsing
+  auto json_parsed = nlohmann::json::parse(message_string)
 
-void SignalingServer::on_open(websocketpp::connection_hdl hdl) {
-  connections_.insert(hdl);
-}
 
-void SignalingServer::on_close(websocketpp::connection_hdl hdl) {
-  connections_.erase(hdl);
-}
+  //check message type and name
+  if(json_parsed["type"] == "join" && json_parsed.contains("name")) {
+    //store name and connection in clients_ map
+    std::string client_name = json_parsed["name"];
+    clients_[handle] = client_name;
 
-void SignalingServer::handle_join_message(message_ptr msg) {
-  JoinMessage join_message = JoinMessage::deserialize(msg->get_payload());
-  std::string username = join_message.username;
-
-  user_manager_.add_user(username);
-  broadcast_message(msg);
-}
-
-void SignalingServer::handle_leave_message(message_ptr msg) {
-  LeaveMessage leave_message = LeaveMessage::deserialize(msg->get_payload());
-  std::string username = leave_message.username;
-
-  user_manager_.remove_user(username);
-  broadcast_message(msg);
-}
-
-std::string SignalingServer::get_message_type(const message_ptr& message) {
-  try {
-nlohmann::json json_message = nlohmann::json::parse(message->get_payload());
-    return json_message["type"];
-  } catch(const std::exception&) {
-    throw std::runtime_error("Invalid message format");
+    //send welcome to client
+    nlohmann::json welcome_message;
+    welcome_message["type"] = "welcome";
+    welcome_message["message"] = "Welcome, " + client_name;
+    server_.send(handle, welcome_message.dump(), websocketpp::frame::opcode::text);
   }
 }
 
-void SignalingServer::on_message(websocketpp::connection_hdl handle, message_ptr message) {
-  std::string message_type = get_message_type(message);
-  if (message_type == k_join_message_type) {
-    handle_join_message(message);
-  } else if (message_type == k_leave_message_type) {
-    handle_leave_message(message);
-  }
-}
+void SignalingServer::on_close(websocketpp::connection_hdl handle) {
+  //retrieve client name with handle
+  std::string client_name = clients_[handle];
 
-void SignalingServer::broadcast_message(message_ptr msg) {
+  //clear client from clients_ map
+  clients_.erase(handle);
+  //remove handle fro connections_
+  connections_.erase(handle);
+
+  //send leave message
+  //
+  nlohmann::json leave_message;
+  leave_message["type"] = "leave";
+  leave_message["message"] = client_name + " has left";
+  std::string leave_message_string = leave_message.dump();
+
   for (auto connection : connections_) {
-    server_.send(connection, msg);
+    server_.send(connection, leave_message_string, websocketpp::frame::opcode::text);
   }
 }

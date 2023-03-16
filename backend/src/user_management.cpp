@@ -1,31 +1,10 @@
 #include "user_management.h"
 #include <stdexcept>
-
-const std::string& User::get_name() const {
-  return name_;
-}
-void User::set_name(const std::string& name) {
-  name_ = name;
-}
-
-DocumentState User::get_document_state() const {
-  return document_state_;
-}
-
-void User::set_document_state(DocumentState state) {
-  document_state_ = state;
-}
-
-bool UserManager::user_exists(const std::string& name) {
-  return users_.count(name) > 0;
-}
-
 void UserManager::add_user(const std::string& name) {
   if(!user_exists(name)) {
-    User new_user(name);
-    users_.insert({name, new_user});
+    users_.insert(name);
   } else {
-    throw std::runtime_error("User already exists");
+    throw std::invalid_argument("user exists");
   }
 }
 
@@ -33,29 +12,11 @@ void UserManager::remove_user(const std::string& name) {
   if(user_exists(name)) {
     users_.erase(name);
   } else {
-    throw std::runtime_error("No such user exists");
-  }
-  auto result = users_.emplace(std::piecewise_construct,
-                               std::forward_as_tuple(name),
-                               std::forward_as_tuple(name));
-  if (!result.second) {
-    throw std::runtime_error("User already exists");
+    throw std::invalid_argument("user does not exist");
   }
 }
 
-void UserManager::update_document_state(const std::string& name, DocumentState state) {
-  if(user_exists(name)) {
-    users_[name].set_document_state(state); 
-  } else {
-    throw std::runtime_error("No such user exists");
-  }
+bool UserManager::user_exists(const std::string& name) const {
+    return users_.count(name) > 0;
 }
 
-const User* UserManager::get_user(const std::string& name) const {
-  auto iterator = users_.find(name);
-  if(iterator != users_.end()) {
-    return &(iterator->second);
-  } else {
-    return nullptr;
-  }
-}
