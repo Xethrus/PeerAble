@@ -1,7 +1,9 @@
 #include "user_management.h"
 #include <stdexcept>
 
-
+const std::string& User::get_name() const {
+  return name_;
+}
 void User::set_name(const std::string& name) {
   name_ = name;
 }
@@ -32,6 +34,12 @@ void UserManager::remove_user(const std::string& name) {
     users_.erase(name);
   } else {
     throw std::runtime_error("No such user exists");
+  }
+  auto result = users_.emplace(std::piecewise_construct,
+                               std::forward_as_tuple(name),
+                               std::forward_as_tuple(name));
+  if (!result.second) {
+    throw std::runtime_error("User already exists");
   }
 }
 

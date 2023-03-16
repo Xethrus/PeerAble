@@ -10,9 +10,7 @@ enum class DocumentState {
 
 class User {
 public:
-  User(const std::string& name) {
-    name_ = name;
-  };
+  explicit User(const std::string& name) : name_(name) {}
 
   const std::string& get_name() const;
   void set_name(const std::string& name);
