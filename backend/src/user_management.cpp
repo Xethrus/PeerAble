@@ -1,25 +1,21 @@
-
 #include "user_management.h"
+#include <stdexcept>
 
 
 void User::set_name(const std::string& name) {
   name_ = name;
 }
 
-bool User::get_document_state() const {
+DocumentState User::get_document_state() const {
   return document_state_;
 }
 
-void User::set_document_state(bool state) {
+void User::set_document_state(DocumentState state) {
   document_state_ = state;
 }
-//make sure this static method works TODO
-static bool UserManager::user_exists(const std::string& name) {
-  if(users_.count(name) > 0) {
-    return true;
-  } else {
-    return false;
-  }
+
+bool UserManager::user_exists(const std::string& name) {
+  return users_.count(name) > 0;
 }
 
 void UserManager::add_user(const std::string& name) {
@@ -39,7 +35,7 @@ void UserManager::remove_user(const std::string& name) {
   }
 }
 
-void UserManager::update_document_state(const std::string& name, bool state) {
+void UserManager::update_document_state(const std::string& name, DocumentState state) {
   if(user_exists(name)) {
     users_[name].set_document_state(state); 
   } else {
@@ -47,7 +43,7 @@ void UserManager::update_document_state(const std::string& name, bool state) {
   }
 }
 
-const User* get_user(const std::string& name) const {
+const User* UserManager::get_user(const std::string& name) const {
   auto iterator = users_.find(name);
   if(iterator != users_.end()) {
     return &(iterator->second);
