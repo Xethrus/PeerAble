@@ -1,13 +1,13 @@
 #include "signaling_server.h"
 #include "user_management.h"
-#include <nlohman/json>
+#include <nlohmann/json.hpp>
 
 SignalingServer::SignalingServer(UserManager& userManager) : userManager_(userManager) {
   server_.init_asio();
 
-  server_.set_open_handler(bind(&SignalingServer::on_open, this, ::_1));
-  server_.set_close_handler(bind(&SignalingServer::on_close, this, ::_1));
-  server_.set_message_handler(bind(&SignalingServer::on_message, this, ::_1, ::_2));
+  server_.set_open_handler(bind(&SignalingServer::on_open, this, std::placeholders::_1));
+  server_.set_close_handler(bind(&SignalingServer::on_close, this, std::placeholders::_1));
+  server_.set_message_handler(bind(&SignalingServer::on_message, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 void SignalingServer::run(uint16_t port) {
@@ -45,7 +45,7 @@ void SignalingServer::on_message(websocketpp::connection_hdl handle, server::mes
 
 void SignalingServer::on_close(websocketpp::connection_hdl handle) {
   //retrieve client name with handle
-  std::string client_name = clients_[handle];
+  std::string client_name = ;
 
   //clear client from users_ map
   userManager_.remove_user(client_name);

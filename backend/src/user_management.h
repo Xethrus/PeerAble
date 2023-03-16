@@ -2,16 +2,28 @@
 
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
+
+#include <websocketpp/config/asio_no_tls.hpp>
+#include <websocketpp/server.hpp>
+#include <websocketpp/common/connection_hdl.hpp>
+
+enum class DocumentState {
+  AVAILABLE,
+  UNAVAILABLE,
+};
 
 class User {
+
 public:
   explicit User(const std::string& name, websocketpp::connection_hdl handle) : name_(name), connection_handle_(handle) {}
-}
+
   void set_name(const std::string& name) {
     name_ = name;
   }
+  const std::string& get_name() {
+  }
   websocketpp::connection_hdl get_handle() const;
-
 private:
   std::string name_;
   DocumentState document_state_;

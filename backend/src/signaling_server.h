@@ -3,12 +3,13 @@
 #include "user_management.h"
 #include <websocketpp/config/asio_no_tls.hpp>
 #include <websocketpp/server.hpp>
+#include <websocketpp/common/connection_hdl.hpp>
 #include <unordered_map>
 #include <set>
-#include <websocketpp/common/connection_hdl.hpp>
 
 class SignalingServer {
 public:
+    typedef websocketpp::server<websocketpp::config::asio> server;
     explicit SignalingServer(UserManager& userManager);
     void run(uint16_t port);
 
