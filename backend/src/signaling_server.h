@@ -15,12 +15,12 @@ public:
 
 private:
     
-//    std::unordered_map<websocketpp::connection_hdl, std::string, std::owner_les<websocketpp::connection_hdl>> clients_;
+    std::unordered_map<websocketpp::connection_hdl, std::string, std::owner_less<websocketpp::connection_hdl>> clients_;
     UserManager userManager_;
     websocketpp::server<websocketpp::config::asio> server_;
     
     //my connections set for storing client connections
-    std::unordered_set<websocketpp::connection_hdl, std::owner_less<websocketpp::connection_hdl>> connections_;
+//    std::unordered_set<websocketpp::connection_hdl, std::owner_less<websocketpp::connection_hdl>> connections_;
   //
     void on_message(websocketpp::connection_hdl handle, server::message_ptr message);
     void on_open(websocketpp::connection_hdl handle);

@@ -39,14 +39,18 @@ public:
   void remove_user(const std::string& name);
   bool user_exists(const std::string& name) const;
   //websocketpp::connection_hdl get_connection_handle(const std::string& name) const;
-  const std::string& get_user(websocketpp::connection_hdl handle);
+  const std::string& get_user(websocketpp::connection_hdl handle) const;
 
-  //struct connection_hdl_hash;
+//  struct connection_hdl_hash {
+//    std::size_t operator()(const websocketpp::connection_hdl& handle) const {
+//      return std::hash<void*>()(handle.lock().get());
+//    }
+//  };
 
 private:
  //users_ //name -> user
  //inverse_users_ //handle -> name
   std::unordered_map<std::string, User> users_;
-  std::unordered_map<websocketpp::connection_hdl, std::string> inverse_users_;
+  //std::unordered_map<websocketpp::connection_hdl, std::string, connection_hdl_hash> inverse_users_;
 };
 

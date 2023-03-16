@@ -19,7 +19,7 @@ void SignalingServer::run(uint16_t port) {
 
 void SignalingServer::on_open(websocketpp::connection_hdl handle) {
   //store connection for later
-  connections_.insert(handle);
+  //connections_.insert(handle);
 }
 
 void SignalingServer::on_message(websocketpp::connection_hdl handle, server::message_ptr message) {
@@ -45,12 +45,12 @@ void SignalingServer::on_message(websocketpp::connection_hdl handle, server::mes
 
 void SignalingServer::on_close(websocketpp::connection_hdl handle) {
   //retrieve client name with handle
-  std::string client_name = userManager_.get_user(handle);
+  //std::string client_name = userManager_.get_user(handle);
 
   //clear client from users_ map
-  userManager_.remove_user(client_name);
+  //userManager_.remove_user(client_name);
   //remove handle fro connections_
-  connections_.erase(handle);
+  //connections_.erase(handle);
 
   //send leave message
   //
@@ -59,7 +59,7 @@ void SignalingServer::on_close(websocketpp::connection_hdl handle) {
   leave_message["message"] = client_name + " has left";
   std::string leave_message_string = leave_message.dump();
 
-  for (auto connection : connections_) {
-    server_.send(connection, leave_message_string, websocketpp::frame::opcode::text);
-  }
+//  for (auto connection : connections_) {
+//    server_.send(connection, leave_message_string, websocketpp::frame::opcode::text);
+//  }
 }
