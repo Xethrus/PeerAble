@@ -49,8 +49,8 @@ int main() {
         // Register our message handler
         echo_server.set_message_handler(bind(&on_message,&echo_server,::_1,::_2));
 
-        // Listen on port 9002
-        echo_server.listen(9002);
+        // Listen on port 8000
+        echo_server.listen(8000);
 
         // Start the server accept loop
         echo_server.start_accept();
