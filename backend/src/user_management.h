@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
@@ -39,7 +40,7 @@ public:
   void remove_user(const std::string& name);
   bool user_exists(const std::string& name) const;
   //websocketpp::connection_hdl get_connection_handle(const std::string& name) const;
-  const std::string& get_user(websocketpp::connection_hdl handle) const;
+  const std::optional<std::string> get_user(websocketpp::connection_hdl handle);
 
 //  struct connection_hdl_hash {
 //    std::size_t operator()(const websocketpp::connection_hdl& handle) const {

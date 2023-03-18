@@ -1,4 +1,5 @@
 #include "user_management.h"
+
 #include <stdexcept>
 
 void UserManager::add_user(const std::string& name, websocketpp::connection_hdl handle) {
@@ -27,4 +28,14 @@ void UserManager::remove_user(const std::string& name) {
 
 bool UserManager::user_exists(const std::string& name) const {
   return(users_.count(name) > 0);
+}
+
+const std::optional<std::string> UserManager::get_user(websocketpp::connection_hdl handle) {
+  for (const auto& [name, user] : users_) {
+    if (user.get_handle() == handle) {
+      return std::optional<std::string>{name};
+    }
+  }
+
+  return std::nullopt;
 }
