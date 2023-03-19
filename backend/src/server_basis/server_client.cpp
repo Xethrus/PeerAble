@@ -38,7 +38,7 @@ void on_fail(client* server_client, websocketpp::connection_hdl handle) {
 int main(int argc, char* argv[]) {
   client server_client;
   
-  std::string uri = "107.131.124.5:8000";
+  std::string uri = "ws://107.131.124.5:8000";
   if (argc == 2) {
     uri = argv[1];
   }
