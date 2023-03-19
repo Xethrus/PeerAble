@@ -22,6 +22,7 @@ void on_open(client* server_client, websocketpp::connection_hdl handle) {
 void on_close(client* server_client, websocketpp::connection_hdl handle) {
   server_client->get_alog().write(websocketpp::log::alevel::app, "Connection closed");
 }
+
 //
 //message
 void on_message(client* server_client, websocketpp::connection_hdl handle, message_ptr message) {
@@ -45,7 +46,7 @@ int main(int argc, char* argv[]) {
   try {
     //setting logging policy if needed (config logging level)
     //comment out to reduce mem usage
-    server_client.clear_access_channels(websocketpp::log::alevel::frame_hear);
+    server_client.clear_access_channels(websocketpp::log::alevel::frame_header);
     server_client.clear_access_channels(websocketpp::log::alevel::frame_payload);
     //server_client.set_error_channels(websocketpp::log::elevel::none);
 
@@ -64,13 +65,13 @@ int main(int argc, char* argv[]) {
   client::connection_ptr connection = server_client.get_connection(uri, error_code);
     server_client.connect(connection);
       //start the asio io_server run loop
-    server_client.run()A;
+    server_client.run();
   } catch (const std::exception & exception) {
     std::cout << exception.what() << std::endl;
-  } catch (websocketpp::lib::error_code exception) {
-    std::cout << exception.what() << std::endl;
+  } catch (websocketpp::lib::error_code error_code) {
+    std::cout << error_code.message() << std::endl;
   } catch (...) {
-    std::cout << exception.what() << std::endl;
+    std::cout << "error" << std::endl;
   }
 }
 
