@@ -13,10 +13,6 @@ std::map<int, websocketpp::connection_hdl> connections;
 
 class routing_server {
 public:
-  routing_server() {
-    m_server
-  }
-
   void on_open(websocketpp::connection_hdl handle) {
     std::lock_guard<std::mutex> lock(connections_mutex);
     static int user_id = 1;
@@ -41,9 +37,9 @@ public:
       }
     }
   }
-private:
-  routing_server m_server;
 };
+
+
 
 int main() {
 

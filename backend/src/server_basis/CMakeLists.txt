@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26.0)
 project(peerAble_server)
-add_executable(server echo_handler.hpp)
+add_executable(server routing_server.cpp)
 SET_TARGET_PROPERTIES(server PROPERTIES LINKER_LANGUAGE CXX)
 add_executable(client server_client.cpp)
