@@ -1,12 +1,5 @@
-
-file (GLOB SOURCE_FILES *.cpp)
-file (GLOB HEADER_FILES *.hpp)
-
-init_target (echo_server)
-
-build_executable (${TARGET_NAME} ${SOURCE_FILES} ${HEADER_FILES})
-
-link_boost ()
-final_target ()
-
-set_target_properties(${TARGET_NAME} PROPERTIES FOLDER "examples")
+cmake_minimum_required(VERSION 3.26.0)
+project(peerAble_server)
+add_executable(server echo_handler.hpp)
+SET_TARGET_PROPERTIES(server PROPERTIES LINKER_LANGUAGE CXX)
+add_executable(client server_client.cpp)
