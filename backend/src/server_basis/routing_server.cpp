@@ -95,14 +95,23 @@ void serve_file(tcp::socket &socket, const std::string &path) {
 void start_http_server() {
   //create I/0 context and tcp acceptor that listens on port 8080 with ipv4. Context and acceptor are needed to manage and accept incoming client connections
   boost::asio::io_context ioc{1};
-  tcp::acceptor acceptor{ioc, {tcp::v4(), 8080}};
+  tcp::acceptor acceptor{ioc, {tcp::v4(), 80}};
 //this is an infinite loop so we can keep accepting incoming connections
   for (;;) {
     //new tcp socket using the i/o context
     tcp::socket socket{ioc};
-  }
+    acceptor.accept(socket);
 
+    boost::beast:flat_buffer buffer;
+    http::request<http::string_body> request;
+    http::read<socket, buffer, request);
+
+    if (req.target() == "/") {
+        serve_file(socket, "frontend/index.html");
+    } 
+  }
 }
+
 void start_websocket_server() {
   routing_server route_srv;
   server ws_server;
