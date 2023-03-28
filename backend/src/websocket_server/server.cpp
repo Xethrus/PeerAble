@@ -2,14 +2,14 @@
 #include <iostream>
 #include <string>
 
-static const char *s_listen_on = "ws://107.131.124.5:8000";
+static const char *s_listen_on = "ws://localhost:8000";
 static const char *s_web_root = ".";
 
 static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
   if (ev == MG_EV_OPEN) {
     // c->is_hexdumping = 1;
   } else if (ev == MG_EV_HTTP_MSG) {
-    mg_http_message *hm = (mg_http_message *) ev_data;
+    struct mg_http_message *hm = (struct mg_http_message *) ev_data;
     if (mg_http_match_uri(hm, "/websocket")) {
       // Upgrade to websocket. From now on, a connection is a full-duplex
       // Websocket connection, which will receive MG_EV_WS_MSG events.
@@ -19,8 +19,8 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
       mg_http_reply(c, 200, "", "{\"result\": %d}\n", 123);
     } else {
       // Serve static files
-      mg_http_serve_opts opts = {.root_dir = s_web_root};
-      mg_http_serve_dir(c, ev_data, &opts);
+      struct mg_http_serve_opts opts = {.root_dir = s_web_root};
+      mg_http_serve_dir(c, reinterpret_cast<struct mg_http_message*>(ev_data), &opts);
     }
   } else if (ev == MG_EV_WS_MSG) {
     // Got websocket frame. Received data is wm->data. Echo it back!
@@ -39,3 +39,4 @@ int main(void) {
   mg_mgr_free(&mgr);
   return 0;
 }
+

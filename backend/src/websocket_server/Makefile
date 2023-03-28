@@ -1,16 +1,22 @@
-CC=g++
-CFLAGS=-c -Wall
+CC=clang++
+CFLAGS=-Wall
 
-all: server
+all: server client
 
 server: server.o mongoose.o
-	$(CC) server.o mongoose.o -o server
+	$(CC) -Wall server.o mongoose.o -o server
+
+client: client.o
+	$(CC) -Wall client.o -o client
 
 server.o: server.cpp
-	$(CC) $(CFLAGS) server.cpp
+	$(CC) -c $(CFLAGS) server.cpp
 
-mongoose.o: mongoose.cpp
-	$(CC) $(CFLAGS) mongoose.cpp
+mongoose.o: mongoose.c
+	$(CC) -c $(CFLAGS) mongoose.c
+
+client.o: client.cpp
+	$(CC) -c $(CFLAGS) client.cpp
 
 
 clean:
