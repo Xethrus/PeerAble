@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-static const char *s_listen_on = "ws://localhost:8000";
+static const char *s_listen_on = "ws://0.0.0.0:8000";
 static const char *s_web_root = ".";
 
 static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {

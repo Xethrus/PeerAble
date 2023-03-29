@@ -1,0 +1,149 @@
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 0.0.0.0:8123            0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:33507         0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:37288           0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:9130            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN     
+tcp        0   2036 192.168.1.133:22        24.6.132.209:65294      ESTABLISHED
+tcp6       0      0 :::8123                 :::*                    LISTEN     
+tcp6       0      0 :::37288                :::*                    LISTEN     
+tcp6       0      0 :::9130                 :::*                    LISTEN     
+tcp6       0      0 :::80                   :::*                    LISTEN     
+tcp6       0      0 :::8086                 :::*                    LISTEN     
+tcp6       0      0 :::22                   :::*                    LISTEN     
+udp        0      0 192.168.1.133:68        192.168.1.1:67          ESTABLISHED
+raw6       0      0 :::58                   :::*                    7          
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  2      [ ]         DGRAM                    54070026 /run/user/1001/systemd/notify
+unix  2      [ ]         DGRAM                    23016    /run/user/1000/systemd/notify
+unix  2      [ ACC ]     STREAM     LISTENING     54070029 /run/user/1001/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     23019    /run/user/1000/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     54070037 /run/user/1001/bus
+unix  2      [ ACC ]     STREAM     LISTENING     23024    /run/user/1000/bus
+unix  2      [ ACC ]     STREAM     LISTENING     54070039 /run/user/1001/gnupg/S.dirmngr
+unix  2      [ ACC ]     STREAM     LISTENING     23026    /run/user/1000/gnupg/S.dirmngr
+unix  2      [ ACC ]     STREAM     LISTENING     54070041 /run/user/1001/gnupg/S.gpg-agent.browser
+unix  2      [ ACC ]     STREAM     LISTENING     38034    /etc/pacman.d/gnupg/S.dirmngr
+unix  2      [ ACC ]     STREAM     LISTENING     23028    /run/user/1000/gnupg/S.gpg-agent.browser
+unix  2      [ ACC ]     STREAM     LISTENING     54070043 /run/user/1001/gnupg/S.gpg-agent.extra
+unix  2      [ ACC ]     STREAM     LISTENING     23030    /run/user/1000/gnupg/S.gpg-agent.extra
+unix  2      [ ACC ]     STREAM     LISTENING     54070045 /run/user/1001/gnupg/S.gpg-agent.ssh
+unix  2      [ ACC ]     STREAM     LISTENING     23032    /run/user/1000/gnupg/S.gpg-agent.ssh
+unix  2      [ ACC ]     STREAM     LISTENING     54070047 /run/user/1001/gnupg/S.gpg-agent
+unix  2      [ ACC ]     STREAM     LISTENING     38987    /etc/pacman.d/gnupg/S.gpg-agent
+unix  2      [ ACC ]     STREAM     LISTENING     23034    /run/user/1000/gnupg/S.gpg-agent
+unix  2      [ ACC ]     STREAM     LISTENING     54070049 /run/user/1001/p11-kit/pkcs11
+unix  2      [ ACC ]     STREAM     LISTENING     23036    /run/user/1000/p11-kit/pkcs11
+unix  2      [ ACC ]     STREAM     LISTENING     56506827 /run/./././././././watchman/xethrus-state/sock
+unix  3      [ ]         DGRAM                    11829    /run/systemd/notify
+unix  2      [ ACC ]     SEQPACKET  LISTENING     11846    /run/systemd/coredump
+unix  8      [ ]         DGRAM                    11850    /run/systemd/journal/dev-log
+unix  7      [ ]         DGRAM                    11852    /run/systemd/journal/socket
+unix  2      [ ACC ]     STREAM     LISTENING     11854    /run/systemd/journal/stdout
+unix  2      [ ACC ]     STREAM     LISTENING     25254147 /run/systemd/userdb/io.systemd.DynamicUser
+unix  2      [ ACC ]     SEQPACKET  LISTENING     11856    /run/udev/control
+unix  2      [ ACC ]     STREAM     LISTENING     25254148 /run/systemd/io.system.ManagedOOM
+unix  2      [ ACC ]     STREAM     LISTENING     38988    /etc/pacman.d/gnupg/S.gpg-agent.extra
+unix  2      [ ACC ]     STREAM     LISTENING     38989    /etc/pacman.d/gnupg/S.gpg-agent.browser
+unix  2      [ ACC ]     STREAM     LISTENING     38990    /etc/pacman.d/gnupg/S.gpg-agent.ssh
+unix  2      [ ACC ]     STREAM     LISTENING     59021761 /run/containerd/containerd.sock.ttrpc
+unix  2      [ ACC ]     STREAM     LISTENING     14322    /run/systemd/journal/io.systemd.journal
+unix  2      [ ACC ]     STREAM     LISTENING     59021762 /run/containerd/containerd.sock
+unix  2      [ ACC ]     STREAM     LISTENING     15365    /run/dbus/system_bus_socket
+unix  2      [ ACC ]     STREAM     LISTENING     15367    /run/docker.sock
+unix  2      [ ACC ]     STREAM     LISTENING     59019141 /var/run/docker/metrics.sock
+unix  2      [ ACC ]     STREAM     LISTENING     59020957 /var/run/docker/libnetwork/0f1f36c1e1a6.sock
+unix  2      [ ACC ]     STREAM     LISTENING     67153978 /run/containerd/s/5cfb4c02f9fba94c777b0b14d0670f6fd624351fddf460c6b9ad6a1aa9c2ca4b
+unix  2      [ ACC ]     STREAM     LISTENING     59021984 /run/containerd/s/366c06915eabc05b74e29be2b630208460018d744d788cc91941ce2f2457cb57
+unix  2      [ ACC ]     STREAM     LISTENING     64324956 /run/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     59022484 /run/containerd/s/9ce2654b6bafb6ea71fa916eabf666c47a32ddc4f48886a3e983f6931eeacc73
+unix  2      [ ACC ]     STREAM     LISTENING     56507395 /tmp/pyre_server_82a82c15c975306e2fbfd75b35c5cddd.sock
+unix  2      [ ACC ]     STREAM     LISTENING     59028637 /tmp/tmux-1001/default
+unix  3      [ ]         STREAM     CONNECTED     22984    
+unix  3      [ ]         STREAM     CONNECTED     12066    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     48597409 /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     69739883 /tmp/tmux-1001/default
+unix  3      [ ]         DGRAM                    57654339 
+unix  2      [ ]         DGRAM                    54069997 
+unix  3      [ ]         STREAM     CONNECTED     15461    
+unix  3      [ ]         STREAM     CONNECTED     59021102 
+unix  3      [ ]         STREAM     CONNECTED     22097    /run/systemd/journal/stdout
+unix  2      [ ]         DGRAM                    522      
+unix  3      [ ]         STREAM     CONNECTED     64324252 /run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM                    64324958 
+unix  3      [ ]         STREAM     CONNECTED     14636700 /run/systemd/journal/stdout
+unix  3      [ ]         DGRAM                    11830    
+unix  3      [ ]         STREAM     CONNECTED     59021764 
+unix  3      [ ]         STREAM     CONNECTED     59021753 
+unix  3      [ ]         DGRAM                    54070027 
+unix  3      [ ]         STREAM     CONNECTED     69740591 
+unix  2      [ ]         STREAM     CONNECTED     69735382 
+unix  3      [ ]         STREAM     CONNECTED     12786    
+unix  3      [ ]         STREAM     CONNECTED     12788    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     59021775 /run/containerd/containerd.sock
+unix  3      [ ]         STREAM     CONNECTED     15384    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     56506829 
+unix  3      [ ]         STREAM     CONNECTED     12785    
+unix  3      [ ]         STREAM     CONNECTED     59021211 
+unix  3      [ ]         STREAM     CONNECTED     14637240 
+unix  3      [ ]         STREAM     CONNECTED     513      
+unix  3      [ ]         STREAM     CONNECTED     59020717 /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     57654345 /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     59021105 /run/containerd/s/366c06915eabc05b74e29be2b630208460018d744d788cc91941ce2f2457cb57
+unix  3      [ ]         STREAM     CONNECTED     54069991 
+unix  2      [ ]         DGRAM                    15489    
+unix  3      [ ]         STREAM     CONNECTED     15490    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     56506828 
+unix  3      [ ]         STREAM     CONNECTED     54070031 
+unix  3      [ ]         STREAM     CONNECTED     59020235 /run/containerd/containerd.sock.ttrpc
+unix  3      [ ]         DGRAM                    527      
+unix  3      [ ]         STREAM     CONNECTED     12935    
+unix  3      [ ]         STREAM     CONNECTED     14565    
+unix  2      [ ]         DGRAM                    14324    
+unix  2      [ ]         DGRAM                    57651726 
+unix  2      [ ]         DGRAM                    48597410 
+unix  3      [ ]         STREAM     CONNECTED     15396    /run/systemd/journal/stdout
+unix  2      [ ]         DGRAM                    15449    
+unix  3      [ ]         DGRAM                    54070028 
+unix  2      [ ]         DGRAM                    23003    
+unix  3      [ ]         STREAM     CONNECTED     64324957 
+unix  2      [ ]         DGRAM                    54070011 
+unix  3      [ ]         STREAM     CONNECTED     67152405 /run/containerd/s/5cfb4c02f9fba94c777b0b14d0670f6fd624351fddf460c6b9ad6a1aa9c2ca4b
+unix  3      [ ]         STREAM     CONNECTED     54072175 /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     23021    
+unix  3      [ ]         STREAM     CONNECTED     59020108 /run/containerd/s/9ce2654b6bafb6ea71fa916eabf666c47a32ddc4f48886a3e983f6931eeacc73
+unix  3      [ ]         STREAM     CONNECTED     57652687 
+unix  3      [ ]         STREAM     CONNECTED     23770    /run/dbus/system_bus_socket
+unix  3      [ ]         DGRAM                    23017    
+unix  3      [ ]         STREAM     CONNECTED     69738993 
+unix  3      [ ]         STREAM     CONNECTED     54072628 /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     15385    
+unix  3      [ ]         STREAM     CONNECTED     67153058 /run/containerd/containerd.sock.ttrpc
+unix  3      [ ]         STREAM     CONNECTED     748      
+unix  3      [ ]         DGRAM                    526      
+unix  3      [ ]         STREAM     CONNECTED     48595495 
+unix  3      [ ]         DGRAM                    11831    
+unix  3      [ ]         STREAM     CONNECTED     14637231 
+unix  3      [ ]         STREAM     CONNECTED     12936    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     59021773 /run/containerd/containerd.sock
+unix  3      [ ]         DGRAM                    23018    
+unix  3      [ ]         STREAM     CONNECTED     59022100 /run/containerd/containerd.sock.ttrpc
+unix  3      [ ]         DGRAM                    57654340 
+unix  3      [ ]         STREAM     CONNECTED     69738992 
+unix  3      [ ]         STREAM     CONNECTED     59021998 
+unix  3      [ ]         STREAM     CONNECTED     14634966 /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     59019142 
+unix  3      [ ]         STREAM     CONNECTED     14564    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     14560    
+unix  2      [ ]         DGRAM                    69735393 
+unix  3      [ ]         STREAM     CONNECTED     59021235 
+unix  3      [ ]         STREAM     CONNECTED     59019119 /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     59020724 
+unix  2      [ ]         DGRAM                    743      
+unix  2      [ ]         DGRAM                    22989    
+unix  3      [ ]         STREAM     CONNECTED     67153982 
+unix  3      [ ]         STREAM     CONNECTED     67154028 
